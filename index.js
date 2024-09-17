@@ -23,13 +23,9 @@ async function getProducts() {
 
     products.forEach(el => {
         listEl.insertAdjacentHTML('beforeend', `
-      <div class="itemCard">
-        <div class="itemImg card">
-          <picture>
-            <source media="(min-width: 900px)" srcset="${el.image}" class="productImg">
-            <source media="(min-width: 480px)" srcset="${el.image}" class="productImg">
-            <img src="${el.image}" class="productImg">
-          </picture>
+      <div class="itemCard block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div class="itemImg">
+            <img src="${el.image}" class="h-auto max-w-full" alt>
           <button type="button" class="cartAddBtn" class="productImg" id="btn-${el.id}" onclick="addToCart(${el.id})">
                   <img src="/assets/images/icon-add-to-cart.svg" id="addCartBtn">
               <p>Add to Cart</p>
@@ -227,7 +223,6 @@ function confirmCart() {
 function newOrder() {
     confOverlay.style.display = "none";
     confOverlayBgBlur.style.visibility = "hidden"
-    document.body.style.overflow = "visible"
 }
 
 confirmCart();

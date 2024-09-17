@@ -26,25 +26,7 @@ body {
     visibility: hidden;
 }
 
-.main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 32px;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: #FCF8F6;
-    margin: 88px auto auto auto;
 
-}
-
-.leftColumn {
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 #pageTitle {
     align-self: flex-start;
@@ -61,21 +43,8 @@ body {
     margin: 0px 0px 32px 00px;
 }
 
-#items {
-    max-width: 800px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 64px 16px;
-    padding: 0px;
-}
-
-
 
 .itemCard {
-    max-height: 347px;
-    display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -89,12 +58,8 @@ body {
     max-height: 262px;
 }
 
-.itemImg > picture {
 
-}
-
-.itemImg > picture > img {
-    width: 250.67px;
+.itemImg  > img {
     height: 240px;
     border-radius: 8px;
 }
@@ -166,7 +131,6 @@ body {
 }
 
 .cartAddedBtn > div > svg:hover {
-    background-color: white;
     stroke: #C73B0F;
 }
 
@@ -215,7 +179,7 @@ p.itemInfoPrice {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    min-width: 336px;
+    min-width: 320px;
 }
 
 
@@ -596,8 +560,7 @@ background-color: white;
 
 @media only screen and (max-width: 1250px) {
     .cart {
-        width: 800px;
-        margin: 0px 32px;
+        margin: 0 32px;
     }
 
     .cartItems {
@@ -605,11 +568,10 @@ background-color: white;
     }
 
     .cartItemContainer {
-        margin: 0px 24px;
+        margin: 0 24px;
     }
 
-    .itemImg > picture > img {
-        width: 213.33px;
+    .itemImg > img {
         height: 212px;
     }
 
@@ -628,7 +590,7 @@ background-color: white;
         width: 400px;
     }
 
-    .itemImg > picture > img {
+    .itemImg  > img {
         width: 327px;
          height: 212px;
     }
