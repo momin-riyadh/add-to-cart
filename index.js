@@ -204,7 +204,6 @@ function confirmCart() {
     confOverlayBgBlur.style.visibility = "visible"
     confOverlay.style.display = "flex"
     window.scrollTo(0, 0)
-    document.body.style.overflow = "hidden"
 
     cart.forEach(el => {
         document.querySelector("#btn-" + el.id + ".cartAddBtn").style.visibility = "visible"
