@@ -32,14 +32,16 @@ async function getProducts() {
           </button>
           <button type="button" class="cartAddedBtn" id="btnInCart-${el.id}">
               <div class="chgQtyBtn" id="itmDecBtn-${el.id}" onclick = "decCart(${el.id})">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                <path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/>
-                </svg>  
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                </svg>
               </div>
               <p id="btnQty-${el.id}">QTY</p>
               <div class="chgQtyBtn" id="itmIncBtn-${el.id}" onclick = "addToCart(${el.id})">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                <path fill="#fff" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                 </svg>
               </div>
           </button>
@@ -108,7 +110,9 @@ function chkQty(clickedID) {
             cart.splice((idToCartIdx), 1)
 
             document.querySelector("#btn-" + el.id + ".cartAddBtn").style.visibility = "visible"
+            document.querySelector("#btn-" + el.id + ".cartAddBtn").style.display = "flex"
             document.querySelector("#btnInCart-" + el.id + ".cartAddedBtn").style.visibility = "hidden"
+            document.querySelector("#btnInCart-" + el.id + ".cartAddedBtn").style.display = "none"
 
         }
     })
@@ -137,14 +141,18 @@ function addToCart(clickedID) {
     cartTotal = cartTotal + products[clickedID].price;
 
     document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.visibility = "hidden"
+    document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.display = "none"
     document.querySelector("#btnInCart-" + clickedID + ".cartAddedBtn").style.visibility = "visible"
+    document.querySelector("#btnInCart-" + clickedID + ".cartAddedBtn").style.display = "flex"
 
 
     let idToCartItm = cart.find(el => el.id === clickedID)
 
     if (idToCartItm.itemQty === 0 && document.querySelector("#btnInCart-" + clickedID + ".cartAddedBtn").style.visibility === "visible") {
         document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.visibility = "visible"
+        document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.display = "flex"
         document.querySelector("#btnInCart-" + clickedID + ".cartAddedBtn").style.visibility = "hidden"
+        document.querySelector("#btnInCart-" + clickedID + ".cartAddedBtn").style.display = "none"
     }
 
     document.querySelector("#btnQty-" + clickedID).innerHTML = idToCartItm.itemQty
