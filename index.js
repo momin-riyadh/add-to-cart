@@ -32,11 +32,15 @@ async function getProducts() {
           </button>
           <button type="button" class="cartAddedBtn" id="btnInCart-${el.id}">
               <div class="chgQtyBtn" id="itmDecBtn-${el.id}" onclick = "decCart(${el.id})">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/></svg>  
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                <path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/>
+                </svg>  
               </div>
               <p id="btnQty-${el.id}">QTY</p>
               <div class="chgQtyBtn" id="itmIncBtn-${el.id}" onclick = "addToCart(${el.id})">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#fff" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                <path fill="#fff" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
+                </svg>
               </div>
           </button>
         </div>
