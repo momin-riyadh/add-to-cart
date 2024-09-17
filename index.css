@@ -40,7 +40,7 @@ body {
     font-weight: 700;
     font-style: normal;
     justify-content: flex-start;
-    margin: 0px 0px 32px 00px;
+    margin: 0 0 32px 00px;
 }
 
 
@@ -55,12 +55,11 @@ body {
     display:flex;
     flex-direction: column;
     align-items: center;
-    max-height: 262px;
 }
 
 
 .itemImg  > img {
-    height: 240px;
+    height: 220px;
     border-radius: 8px;
 }
 
@@ -76,7 +75,6 @@ body {
     font-weight: 600;
     font-style: normal;
     overflow-wrap: initial;
-    transform: translateY(-22px);
     display: flex;
     flex-direction: row;
     align-items: center;
