@@ -186,7 +186,7 @@ function confirmCart() {
         confOverlayCart.innerHTML += `
       <div class="confCartContainer">
         <div class="confCartItem">
-          <img src="${el.image}" class="productImg">
+          <img src="${el.itemImg}" class="productImg" alt="">
           <span>
             <p id="cartItmName">${el.itemName}</p>
             <p class="cartItmPricing" id="cartItmQty">${el.itemQty}x     </p>

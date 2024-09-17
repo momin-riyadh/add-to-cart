@@ -463,7 +463,7 @@ background-color: white;
 .cartSummary {
     min-height: 125px;
     max-height: 300px;
-    overflow: scroll;
+    overflow-y: scroll;
     scroll-behavior: smooth;
     min-width: 90%
 }
