@@ -52,8 +52,6 @@ async function getProducts() {
 }
 
 
-
-
 function updateCart(clickedID) {
     if (cart.length === 0) {
         cartBtmContinerEl.style.visibility = "hidden"
