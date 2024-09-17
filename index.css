@@ -1,5 +1,13 @@
 *{
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    &::before{
+        box-sizing: border-box;
+    }
+    &::after{
+        box-sizing: border-box;
+    }
 }
 body {
     background-color: #FCF8F6;
@@ -7,8 +15,8 @@ body {
 
 .blurOverlay {
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     z-index: 1;
     background-color: rgba(49, 49, 49, 0.932);
     backdrop-filter: blur(10px);
@@ -41,7 +49,6 @@ body {
 #pageTitle {
     align-self: flex-start;
     justify-self: flex-start;
-
 }
 
 .leftColumn > div > h1 {
