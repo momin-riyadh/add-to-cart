@@ -62,7 +62,7 @@ function updateCart(clickedID) {
 
         cartEl.innerHTML = `
       <img class="cartPlacHolderImg" src="assets/images/illustration-empty-cart.svg">
-      <p class="cartPlaceHolder">Your added items will appear h ere</p>
+      <p class="cartPlaceHolder">Your added items will appear here</p>
     `
 
     } else {
