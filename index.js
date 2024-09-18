@@ -217,6 +217,7 @@ function confirmCart() {
 
     cart.forEach(el => {
         document.querySelector("#btn-" + el.id + ".cartAddBtn").style.visibility = "visible"
+        document.querySelector("#btn-" + el.id + ".cartAddBtn").style.display = "flex"
         document.querySelector("#btnInCart-" + el.id + ".cartAddedBtn").style.visibility = "hidden"
     });
 
