@@ -540,9 +540,6 @@ p.itemInfoPrice {
 /* Responsive Changes */
 
 @media only screen and (max-width: 1250px) {
-    .cart {
-        margin: 0 32px;
-    }
 
     .cartItems {
         justify-content: center;
@@ -568,7 +565,7 @@ p.itemInfoPrice {
 
 @media only screen and (max-width: 750px) {
     .cart {
-        width: 400px;
+        max-width: 400px;
     }
 
     .itemImg > img {
