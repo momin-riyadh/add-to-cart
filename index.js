@@ -70,8 +70,12 @@ async function getProducts() {
   }
 }
 
-function updateCart(clickedID) {
+function updateCart() {
   if (cart.length === 0) {
+    // Reset cart totals when empty
+    cartQty = 0;
+    cartTotal = 0;
+    
     cartBtmContinerEl.style.visibility = "hidden";
     cartBtmContinerEl.style.height = "0";
     cartTitleEl.innerHTML = `Your Cart (${cartQty})`;
@@ -109,6 +113,9 @@ function updateCart(clickedID) {
     cartBtmContinerEl.style.visibility = "visible";
     cartBtmContinerEl.style.height = "200px";
   }
+
+  // Update cart total display
+  cartTotalEl.innerHTML = `$${cartTotal.toFixed(2)}`;
 }
 
 function chkQty(clickedID) {
@@ -147,7 +154,7 @@ function addToCart(clickedID) {
     cart.push({
       id: clickedID,
       itemName: product.title,
-      itemPrice: product.price.toFixed(2),
+      itemPrice: product.price,
       itemQty: 1,
       itemImg: product.image,
     });
@@ -170,15 +177,17 @@ function decCart(clickedID) {
   let cartItem = cart[cartIndex];
   let product = products.find(p => p.id === clickedID);
 
-  if (cartItem.itemQty > 1) {
-    cartItem.itemQty--;
-    cartQty--;
-    cartTotal -= product.price;
-  } else {
-    // Remove the item if quantity becomes 0
+  if (!product) {
+    console.error('Product not found');
+    return;
+  }
+
+  cartItem.itemQty--;
+  cartQty--;
+  cartTotal -= product.price;
+
+  if (cartItem.itemQty === 0) {
     cart.splice(cartIndex, 1);
-    cartQty--;
-    cartTotal -= product.price;
   }
 
   updateCartButton(clickedID);
@@ -208,13 +217,26 @@ function updateCartButton(clickedID) {
 
 function rmvCart(clickedID) {
   let cartIndex = cart.findIndex((item) => item.id === clickedID);
-  let cartItem = cart.find((item) => item.id === clickedID);
+  if (cartIndex === -1) {
+    console.error('Item not found in cart');
+    return;
+  }
 
-  cartQty = cartQty - cartItem.itemQty;
-  cartTotal = cartTotal - products[clickedID].price * cartItem.itemQty;
-  cart[cartIndex].itemQty = 0;
+  let cartItem = cart[cartIndex];
+  let product = products.find(p => p.id === clickedID);
 
-  chkQty(clickedID);
+  if (!product) {
+    console.error('Product not found');
+    return;
+  }
+
+  cartQty -= cartItem.itemQty;
+  cartTotal -= product.price * cartItem.itemQty;
+  
+  cart.splice(cartIndex, 1);
+
+  updateCartButton(clickedID);
+  updateCart();
 }
 
 function confirmCart() {
