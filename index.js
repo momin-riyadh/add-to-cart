@@ -157,8 +157,7 @@ function addToCart(clickedID) {
   document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.display =
     "none";
   document.querySelector(
-    "#btnInCart-" + clickedID + ".cartAddedBtn"-
-  ).style.visibility = "visible";
+    "#btnInCart-" + clickedID + ".cartAddedBtn").style.visibility = "visible";
   document.querySelector(
     "#btnInCart-" + clickedID + ".cartAddedBtn"
   ).style.display = "flex";
