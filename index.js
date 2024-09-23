@@ -63,6 +63,8 @@ async function getProducts() {
         </div>`
       );
     });
+
+    updateCart(); // Add this line to initialize the cart display
   } catch (error) {
     console.error('Error fetching products:', error);
   }
@@ -132,70 +134,76 @@ function chkQty(clickedID) {
 }
 
 function addToCart(clickedID) {
-  if (cart.some((item) => item.id === clickedID)) {
-    let cartIndex = cart.findIndex((item) => item.id === clickedID);
-    cart[cartIndex].itemQty = cart[cartIndex].itemQty + 1;
+  let product = products.find(p => p.id === clickedID);
+  if (!product) {
+    console.error('Product not found');
+    return;
+  }
+
+  let cartItem = cart.find(item => item.id === clickedID);
+  if (cartItem) {
+    cartItem.itemQty++;
   } else {
     cart.push({
       id: clickedID,
-      itemName: products[clickedID].title,
-      itemPrice: products[clickedID].price.toFixed(2),
+      itemName: product.title,
+      itemPrice: product.price.toFixed(2),
       itemQty: 1,
-      itemImg: products[clickedID].image,
+      itemImg: product.image,
     });
   }
 
   cartQty++;
-  cartTotal = cartTotal + products[clickedID].price;
+  cartTotal += product.price;
 
-  document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.visibility =
-    "hidden";
-  document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.display =
-    "none";
-  document.querySelector(
-    "#btnInCart-" + clickedID + ".cartAddedBtn").style.visibility = "visible";
-  document.querySelector(
-    "#btnInCart-" + clickedID + ".cartAddedBtn"
-  ).style.display = "flex";
-
-  let idToCartItm = cart.find((el) => el.id === clickedID);
-
-  if (
-    idToCartItm.itemQty === 0 &&
-    document.querySelector("#btnInCart-" + clickedID + ".cartAddedBtn").style
-      .visibility === "visible"
-  ) {
-    document.querySelector(
-      "#btn-" + clickedID + ".cartAddBtn"
-    ).style.visibility = "visible";
-    document.querySelector("#btn-" + clickedID + ".cartAddBtn").style.display =
-      "flex";
-    document.querySelector(
-      "#btnInCart-" + clickedID + ".cartAddedBtn"
-    ).style.visibility = "hidden";
-    document.querySelector(
-      "#btnInCart-" + clickedID + ".cartAddedBtn"
-    ).style.display = "none";
-  }
-
-  document.querySelector("#btnQty-" + clickedID).innerHTML =
-    idToCartItm.itemQty;
-
-  updateCart(clickedID);
+  updateCartButton(clickedID);
+  updateCart();
 }
 
 function decCart(clickedID) {
-  let cartIndex = cart.findIndex((item) => item.id === clickedID);
-  let cartItem = cart.find((item) => item.id === clickedID);
+  let cartIndex = cart.findIndex(item => item.id === clickedID);
+  if (cartIndex === -1) {
+    console.error('Item not found in cart');
+    return;
+  }
 
-  cart[cartIndex].itemQty = cart[cartIndex].itemQty - 1;
+  let cartItem = cart[cartIndex];
+  let product = products.find(p => p.id === clickedID);
 
-  cartQty--;
-  cartTotal = cartTotal - products[clickedID].price;
+  if (cartItem.itemQty > 1) {
+    cartItem.itemQty--;
+    cartQty--;
+    cartTotal -= product.price;
+  } else {
+    // Remove the item if quantity becomes 0
+    cart.splice(cartIndex, 1);
+    cartQty--;
+    cartTotal -= product.price;
+  }
 
-  document.querySelector("#btnQty-" + clickedID).innerHTML = cartItem.itemQty;
+  updateCartButton(clickedID);
+  updateCart();
+}
 
-  chkQty(clickedID);
+function updateCartButton(clickedID) {
+  let cartItem = cart.find(item => item.id === clickedID);
+  let addBtn = document.querySelector(`#btn-${clickedID}.cartAddBtn`);
+  let addedBtn = document.querySelector(`#btnInCart-${clickedID}.cartAddedBtn`);
+  let qtyDisplay = document.querySelector(`#btnQty-${clickedID}`);
+
+  if (cartItem && cartItem.itemQty > 0) {
+    addBtn.style.visibility = 'hidden';
+    addBtn.style.display = 'none';
+    addedBtn.style.visibility = 'visible';
+    addedBtn.style.display = 'flex';
+    qtyDisplay.textContent = cartItem.itemQty;
+  } else {
+    addBtn.style.visibility = 'visible';
+    addBtn.style.display = 'flex';
+    addedBtn.style.visibility = 'hidden';
+    addedBtn.style.display = 'none';
+    qtyDisplay.textContent = 'QTY';
+  }
 }
 
 function rmvCart(clickedID) {
