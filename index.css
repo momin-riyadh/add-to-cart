@@ -1,16 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 
-    &::before {
-        box-sizing: border-box;
-    }
-
-    &::after {
-        box-sizing: border-box;
-    }
-}
 
 body {
     background-color: #FCF8F6;
@@ -477,10 +465,11 @@ p.itemInfoPrice {
 .confCartItem {
     display: flex;
     align-content: center;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     background: #dddddd;
+    padding: 10px;
 }
 
 
